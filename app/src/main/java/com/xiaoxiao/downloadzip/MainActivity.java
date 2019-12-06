@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingDialog.show();
+
                 downloadZIP();
             }
         });
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void startDownload() {
+        loadingDialog.show();
         sc = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         Intent intent = new Intent(MainActivity.this, DownloadZipService.class);
-        intent.putExtra("zipurl", "https://github.com/xiao-er/SelectCitys/archive/master.zip");
+        intent.putExtra("zipurl", "https://github.com/xiao-er/ViewFlipper/archive/master.zip");
         if (sc != null) {
             MainActivity.this.bindService(intent, sc, Context.BIND_AUTO_CREATE);
         }
